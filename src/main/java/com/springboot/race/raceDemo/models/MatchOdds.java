@@ -3,6 +3,7 @@ package com.springboot.race.raceDemo.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -23,4 +24,16 @@ public class MatchOdds {
     private String specifier;
     private Double odd;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MatchOdds matchOdds = (MatchOdds) o;
+        return Objects.equals(id, matchOdds.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
