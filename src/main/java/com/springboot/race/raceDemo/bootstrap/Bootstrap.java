@@ -73,7 +73,7 @@ public class Bootstrap implements CommandLineRunner {
         matchOdds3 = MatchOdds.builder()
                 .specifier("Z")
                 .odd(1.27d).build();
-        
+
         match1.setMatchOdds(matchOdds1);
         matchOdds1.setMatch(match1);
         matchRepository.save(match1);
