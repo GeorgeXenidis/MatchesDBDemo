@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "f854ab84-20d0-42cc-bc13-320e56cc6725",
+		"name": "MatchesDBDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a Match",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\":\"New Game Between Teams\",\r\n    \"teamA\":\"Alpha Rezous Thetiko\",\r\n    \"teamB\":\"B arnitiko\",\r\n    \"sport\":\"Basketball\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/match/createMatch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"match",
+						"createMatch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Match",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"1\",\r\n    \"sportType\":\"Something that is not inluded in ENUM Class\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/match/updateMatch",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"match",
+						"updateMatch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Match",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/match/deleteMatch",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"match",
+						"deleteMatch"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
