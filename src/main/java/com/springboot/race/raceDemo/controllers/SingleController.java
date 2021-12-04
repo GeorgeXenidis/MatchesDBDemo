@@ -1,5 +1,6 @@
 package com.springboot.race.raceDemo.controllers;
 
+import com.springboot.race.raceDemo.dtos.IdDto;
 import com.springboot.race.raceDemo.dtos.MatchDetailsDto;
 import com.springboot.race.raceDemo.dtos.SportDto;
 import com.springboot.race.raceDemo.models.Match;
@@ -95,8 +96,16 @@ public class SingleController {
     }
 
     @PostMapping("/deleteMatch")
-    public void deleteMatch(){
+    @ResponseBody
+    public void deleteMatch(@RequestBody IdDto id){
 
+        Optional<Match> optionalMatch = matchRepository.findById(id.getId());
+        if(optionalMatch.isEmpty()){
+            throw  new NoSuchElementException("The match with the given ID couldn't be found");
+        }
+
+        Match match = optionalMatch.get();
+        matchRepository.delete(match);
     }
 
 }
