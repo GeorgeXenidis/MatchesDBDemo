@@ -1,6 +1,7 @@
 package com.springboot.race.raceDemo.controllers;
 
 import com.springboot.race.raceDemo.dtos.MatchDetailsDto;
+import com.springboot.race.raceDemo.dtos.SportDto;
 import com.springboot.race.raceDemo.models.Match;
 import com.springboot.race.raceDemo.models.MatchOdds;
 import com.springboot.race.raceDemo.models.Sport;
@@ -71,11 +72,25 @@ public class SingleController {
 
         MatchDetailsDto matchDetailsDto = new MatchDetailsDto(match);
 
-        return modelMapper.map(match, MatchDetailsDto.class);
+        return matchDetailsDto;
     }
 
     @PutMapping("/updateMatch")
-    public void updateMatch(){
+    @ResponseBody
+    public MatchDetailsDto updateMatch(@RequestBody SportDto newSport){
+
+        Optional<Match> optionalMatch = matchRepository.findById(newSport.getId());
+        if(optionalMatch.isEmpty()){
+            throw  new NoSuchElementException("The match with the given ID couldn't be found");
+        }
+
+        Match match = optionalMatch.get();
+        match.setSport(newSport.getSportType());
+        matchRepository.save(match);
+
+        MatchDetailsDto matchDetailsDto = new MatchDetailsDto(match);
+
+        return matchDetailsDto;
 
     }
 
