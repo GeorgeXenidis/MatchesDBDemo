@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MatchDetailsDto {
 
-    private String id;
+    private Long id;
     private String description;
     private String matchDate;
     private String matchTime;
@@ -21,7 +21,7 @@ public class MatchDetailsDto {
     private String sport;
 
     public MatchDetailsDto(Match match){
-        this.id = match.getId().toString();
+        this.id = match.getId();
         this.description = match.getDescription();
         this.matchDate = match.getMatchDate().toString();
         this.matchTime = match.getMatchTime().toString();
