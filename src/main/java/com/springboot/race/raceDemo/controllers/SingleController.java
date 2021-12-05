@@ -33,11 +33,11 @@ public class SingleController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/getMatchDetails/{id}")
+    @GetMapping("/getMatchDetails")
     @ResponseBody
-    public MatchDetailsDto getMatchDetails(@PathVariable Long id){
+    public MatchDetailsDto getMatchDetails(@RequestBody IdDto id){
 
-        Optional<Match> optionalMatch = matchRepository.findById(id);
+        Optional<Match> optionalMatch = matchRepository.findById(id.getId());
 
         if(optionalMatch.isEmpty()){
             throw  new NoSuchElementException("The match with the given ID couldn't be found");
@@ -48,6 +48,7 @@ public class SingleController {
 
         return matchDetailsDto;
     }
+
 
     @PostMapping("/createMatch")
     @ResponseBody
