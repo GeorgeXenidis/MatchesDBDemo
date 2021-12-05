@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\":\"New Game Between Teams\",\r\n    \"teamA\":\"Alpha Rezous Thetiko\",\r\n    \"teamB\":\"B arnitiko\",\r\n    \"sport\":\"Basketball\"\r\n}",
+					"raw": "{\r\n    \"description\":\"New Game Between Teams\",\r\n    \"matchDate\":\"2021-12-3\",\r\n    \"matchTime\":\"13:45.02\",\r\n    \"teamA\":\"Alpha Rezous Thetiko\",\r\n    \"teamB\":\"B arnitiko\",\r\n    \"sport\":\"Basketball\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,8 +20,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/match/createMatch",
-					"protocol": "http",
+					"raw": "localhost:8080/match/createMatch",
 					"host": [
 						"localhost"
 					],
@@ -100,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"3\"\r\n}",
+					"raw": "{\r\n    \"id\":\"2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
