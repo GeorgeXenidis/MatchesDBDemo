@@ -2,7 +2,7 @@ package com.springboot.race.raceDemo.controllers;
 
 import com.springboot.race.raceDemo.dtos.IdDto;
 import com.springboot.race.raceDemo.dtos.MatchDetailsDto;
-import com.springboot.race.raceDemo.dtos.SportDto;
+import com.springboot.race.raceDemo.dtos.SportIdDto;
 import com.springboot.race.raceDemo.models.Match;
 import com.springboot.race.raceDemo.models.MatchOdds;
 import com.springboot.race.raceDemo.models.Sport;
@@ -79,7 +79,7 @@ public class SingleController {
 
     @PutMapping("/updateMatch")
     @ResponseBody
-    public MatchDetailsDto updateMatch(@RequestBody SportDto newSport){
+    public MatchDetailsDto updateMatch(@RequestBody SportIdDto newSport){
 
         Optional<Match> optionalMatch = matchRepository.findById(newSport.getId());
         if(optionalMatch.isEmpty()){

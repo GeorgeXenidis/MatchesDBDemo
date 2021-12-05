@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SportDto {
+public class SportIdDto {
 
     private Long id;
     private String sportType;
