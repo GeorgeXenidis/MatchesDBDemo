@@ -53,7 +53,6 @@ public class SingleController {
     @PostMapping("/createMatch")
     @ResponseBody
     public MatchDetailsDto createMatch(){
-        Scanner input = new Scanner(System.in);
         Match match = Match.builder()
                 .description("New Game Between Teams")
                 .matchDate(LocalDate.EPOCH)
