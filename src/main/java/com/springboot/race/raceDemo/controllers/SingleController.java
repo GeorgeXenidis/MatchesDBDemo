@@ -3,6 +3,7 @@ package com.springboot.race.raceDemo.controllers;
 import com.springboot.race.raceDemo.dtos.IdDto;
 import com.springboot.race.raceDemo.dtos.MatchDetailsDto;
 import com.springboot.race.raceDemo.dtos.SportIdDto;
+import com.springboot.race.raceDemo.exceptions.EntityIdNotFoundExc;
 import com.springboot.race.raceDemo.models.Match;
 import com.springboot.race.raceDemo.models.MatchOdds;
 import com.springboot.race.raceDemo.models.Sport;
@@ -17,7 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.Scanner;
 
 @RequestMapping("/match")
 @Controller
@@ -35,12 +35,12 @@ public class SingleController {
 
     @GetMapping("/getMatchDetails")
     @ResponseBody
-    public MatchDetailsDto getMatchDetails(@RequestBody IdDto id){
+    public MatchDetailsDto getMatchDetails(@RequestBody IdDto idDto){
 
-        Optional<Match> optionalMatch = matchRepository.findById(id.getId());
+        Optional<Match> optionalMatch = matchRepository.findById(idDto.getId());
 
         if(optionalMatch.isEmpty()){
-            throw  new NoSuchElementException("The match with the given ID couldn't be found");
+            throw  new EntityIdNotFoundExc(idDto.getId());
         }
 
         Match match = optionalMatch.get();
@@ -78,15 +78,15 @@ public class SingleController {
 
     @PutMapping("/updateMatch")
     @ResponseBody
-    public MatchDetailsDto updateMatch(@RequestBody SportIdDto newSport){
+    public MatchDetailsDto updateMatch(@RequestBody SportIdDto sportIdDto){
 
-        Optional<Match> optionalMatch = matchRepository.findById(newSport.getId());
+        Optional<Match> optionalMatch = matchRepository.findById(sportIdDto.getId());
         if(optionalMatch.isEmpty()){
-            throw  new NoSuchElementException("The match with the given ID couldn't be found");
+            throw  new EntityIdNotFoundExc(sportIdDto.getId());
         }
 
         Match match = optionalMatch.get();
-        match.setSport(newSport.getSportType());
+        match.setSport(sportIdDto.getSportType());
         matchRepository.save(match);
 
         MatchDetailsDto matchDetailsDto = new MatchDetailsDto(match);
@@ -97,11 +97,11 @@ public class SingleController {
 
     @PostMapping("/deleteMatch")
     @ResponseBody
-    public void deleteMatch(@RequestBody IdDto id){
+    public void deleteMatch(@RequestBody IdDto idDto){
 
-        Optional<Match> optionalMatch = matchRepository.findById(id.getId());
+        Optional<Match> optionalMatch = matchRepository.findById(idDto.getId());
         if(optionalMatch.isEmpty()){
-            throw  new NoSuchElementException("The match with the given ID couldn't be found");
+            throw  new EntityIdNotFoundExc(idDto.getId());
         }
 
         Match match = optionalMatch.get();
